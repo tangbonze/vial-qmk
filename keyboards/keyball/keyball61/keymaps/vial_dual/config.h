@@ -56,3 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // EEPROM settings for Vial
 #define VIAL_EEPROM_SIZE 1024
+
+#define VIAL_TAP_DANCE_ENTRIES 16
+#define VIAL_COMBO_ENTRIES 16
+#define VIAL_KEY_OVERRIDE_ENTRIES 16
