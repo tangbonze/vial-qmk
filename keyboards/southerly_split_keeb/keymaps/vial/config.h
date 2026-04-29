@@ -1,0 +1,11 @@
+#pragma once
+
+// Vial specific settings
+#define VIAL_KEYBOARD_UID {0xAF, 0xA5, 0xB0, 0xB6, 0xEB, 0xAB, 0x42, 0xB4}
+
+#define VIAL_INSECURE
+
+#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#define VIAL_TAP_DANCE_ENTRIES 32
+#define VIAL_COMBO_ENTRIES 32
+#define VIAL_KEY_OVERRIDE_ENTRIES 32
