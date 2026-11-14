@@ -103,12 +103,16 @@ uint8_t pmw33xx_read(uint8_t sensor, uint8_t reg_addr) {
 }
 
 bool pmw33xx_check_signature(uint8_t sensor) {
-    uint8_t signature_dump[2] = {
-        pmw33xx_read(sensor, REG_Product_ID),
-        pmw33xx_read(sensor, REG_Inverse_Product_ID),
-    };
+    uint8_t product_id = pmw33xx_read(sensor, REG_Product_ID);
+    uint8_t inverse_id = pmw33xx_read(sensor, REG_Inverse_Product_ID);
 
-    return memcmp(pmw33xx_firmware_signature, signature_dump, sizeof(signature_dump)) == 0;
+    if (product_id != pmw33xx_firmware_signature[0]) {
+        return false;
+    }
+
+    // Some PMW3389 batches return 0xB9 in Inverse_Product_ID instead of the
+    // bit-inverse 0xB8 that QMK expects; accept either so init doesn't fail.
+    return inverse_id == pmw33xx_firmware_signature[1] || inverse_id == (uint8_t)~product_id || inverse_id == 0xB9;
 }
 
 bool pmw33xx_upload_firmware(uint8_t sensor) {
